@@ -1,7 +1,13 @@
 import {useState} from 'react'
-import AddIcon from "./icons/AddIcon.jsx";
+import slqlite from 'sqlite3'
 
 function App() {
+
+    let db = new slqlite.Database('db.sqliet3')
+
+    db.serialize(()=>{
+        
+    })
 
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
