@@ -1,13 +1,14 @@
 import {useState} from 'react'
-import slqlite from 'sqlite3'
+
+//import slqlite from 'sqlite3'
 
 function App() {
 
-    let db = new slqlite.Database('db.sqliet3')
+//    let db = new slqlite.Database('db.sqliet3')
 
-    db.serialize(()=>{
-        
-    })
+//    db.serialize(()=>{
+//
+//    })
 
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
@@ -40,7 +41,7 @@ function App() {
                         <input type="text" id="title" className="border rounded ml-[10px]"
                                value={title}
                                maxLength="25"
-                               onChange={event => setTitle(event.target.value)} placeholder="Введите заголовк...    "/>
+                               onChange={event => setTitle(event.target.value)}/>
                     </div>
                     <div className="flex flex-col">
                         <label>Записка</label>
@@ -59,8 +60,8 @@ function App() {
                 </div>
             </div>
 
-            <div className="container mx-auto py-[50px] flex items-center flex-wrap  space-x-4">
-                <div className="w-[250px] h-[250px] bg-white rounded flex items-center justify-center">
+            <div className="container mx-auto py-[50px] flex items-center  justify-between flex-wrap">
+                <div className="w-[250px] h-[250px] bg-white rounded flex items-center justify-center mb-[20px]">
                     <button onClick={() => {
                         setShow(true)
                     }}>
@@ -73,30 +74,33 @@ function App() {
                 </div>
 
                 {note.map((val, key) => {
-                    return (
-                        <div
-                            className="w-[250px] h-[250px] bg-white rounded p-[20px] break-words flex flex-col justify-between"
-                            key={key}>
-                            <div className="note-header break-words">
-                                <h2 className="border-b font-bold text-[20px]">{val.title}</h2>
-                            </div>
+                        return (
+                            <div
+                                className="w-[250px] h-[250px] bg-white rounded p-[20px] break-words flex flex-col justify-between mb-[20px]"
+                                key={key}>
+                                <div className="note-header break-words">
+                                    <h2 className="border-b font-bold text-[20px]">{val.title}</h2>
+                                </div>
 
-                            <div className="note-body break-words w-full h-full mt-[10px]">
-                                {val.body}
-                            </div>
+                                <div className="note-body break-words w-full h-full mt-[10px]">
+                                    {val.body}
+                                </div>
 
-                            <div className="note-footer">
-                                <button onClick={deleteNote}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                         strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                        <path strokeLinecap="round" strokeLinejoin="round"
-                                              d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m6 4.125l2.25 2.25m0 0l2.25 2.25M12 13.875l2.25-2.25M12 13.875l-2.25 2.25M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/>
-                                    </svg>
-                                </button>
+                                <div className="note-footer">
+                                    <button onClick={deleteNote} className="flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 mr-[5px]">
+                                            <path strokeLinecap="round" strokeLinejoin="round"
+                                                  d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m6 4.125l2.25 2.25m0 0l2.25 2.25M12 13.875l2.25-2.25M12 13.875l-2.25 2.25M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/>
+                                        </svg>
+                                        Удалить
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    )
-                })}
+                        )
+                    }
+                )
+                }
             </div>
         </div>
     )
